@@ -1,0 +1,392 @@
+
+KEYPAD_CONTROL.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000202  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .debug_aranges 00000020  00000000  00000000  00000256  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  2 .debug_pubnames 00000023  00000000  00000000  00000276  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  3 .debug_info   000000ac  00000000  00000000  00000299  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_abbrev 00000076  00000000  00000000  00000345  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_line   00000208  00000000  00000000  000003bb  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_frame  00000030  00000000  00000000  000005c4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_str    00000090  00000000  00000000  000005f4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_loc    00000028  00000000  00000000  00000684  2**0
+                  CONTENTS, READONLY, DEBUGGING
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e2 e0       	ldi	r30, 0x02	; 2
+  68:	f2 e0       	ldi	r31, 0x02	; 2
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <.do_copy_data_start>
+
+0000006c <.do_copy_data_loop>:
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+
+00000070 <.do_copy_data_start>:
+  70:	a0 36       	cpi	r26, 0x60	; 96
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <.do_copy_data_loop>
+
+00000076 <__do_clear_bss>:
+  76:	10 e0       	ldi	r17, 0x00	; 0
+  78:	a0 e6       	ldi	r26, 0x60	; 96
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a0 36       	cpi	r26, 0x60	; 96
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 a3 00 	call	0x146	; 0x146 <main>
+  8a:	0c 94 ff 00 	jmp	0x1fe	; 0x1fe <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__heap_end>
+
+00000092 <key>:
+  	}	
+	return 0;
+}
+
+int key()
+{	int key=1;
+  92:	3f ee       	ldi	r19, 0xEF	; 239
+		if((PINA & 0b00000010) == 0){return 2;key=0;}
+		if((PINA & 0b00000100) == 0){return 3;key=0;}
+		if((PINA & 0b00001000) == 0){return 4;key=0;}
+		
+
+		PORTD=0b11011111;
+  94:	2f ed       	ldi	r18, 0xDF	; 223
+		if((PINA & 0b00000001) == 0){return 5;key=0;}
+		if((PINA & 0b00000010) == 0){return 6;key=0;}
+		if((PINA & 0b00000100) == 0){return 7;key=0;}
+		if((PINA & 0b00001000) == 0){return 8;key=0;}
+
+		PORTD=0b10111111;
+  96:	9f eb       	ldi	r25, 0xBF	; 191
+		if((PINA & 0b00000001) == 0){return 9;key=0;}
+		if((PINA & 0b00000010) == 0){return 10;key=0;}
+		if((PINA & 0b00000100) == 0){return 11;key=0;}
+		if((PINA & 0b00001000) == 0){return 12;key=0;}
+
+		PORTD=0b01111111;
+  98:	8f e7       	ldi	r24, 0x7F	; 127
+  9a:	4e c0       	rjmp	.+156    	; 0x138 <key+0xa6>
+int key()
+{	int key=1;
+	while(key)
+	{	PORTD=0b11101111;
+		if((PINA & 0b00000001) == 0){return 1;key=0;}
+		if((PINA & 0b00000010) == 0){return 2;key=0;}
+  9c:	c9 99       	sbic	0x19, 1	; 25
+  9e:	03 c0       	rjmp	.+6      	; 0xa6 <key+0x14>
+  a0:	22 e0       	ldi	r18, 0x02	; 2
+  a2:	30 e0       	ldi	r19, 0x00	; 0
+  a4:	4e c0       	rjmp	.+156    	; 0x142 <key+0xb0>
+		if((PINA & 0b00000100) == 0){return 3;key=0;}
+  a6:	ca 99       	sbic	0x19, 2	; 25
+  a8:	03 c0       	rjmp	.+6      	; 0xb0 <key+0x1e>
+  aa:	23 e0       	ldi	r18, 0x03	; 3
+  ac:	30 e0       	ldi	r19, 0x00	; 0
+  ae:	49 c0       	rjmp	.+146    	; 0x142 <key+0xb0>
+		if((PINA & 0b00001000) == 0){return 4;key=0;}
+  b0:	cb 99       	sbic	0x19, 3	; 25
+  b2:	03 c0       	rjmp	.+6      	; 0xba <key+0x28>
+  b4:	24 e0       	ldi	r18, 0x04	; 4
+  b6:	30 e0       	ldi	r19, 0x00	; 0
+  b8:	44 c0       	rjmp	.+136    	; 0x142 <key+0xb0>
+		
+
+		PORTD=0b11011111;
+  ba:	22 bb       	out	0x12, r18	; 18
+		if((PINA & 0b00000001) == 0){return 5;key=0;}
+  bc:	c8 99       	sbic	0x19, 0	; 25
+  be:	03 c0       	rjmp	.+6      	; 0xc6 <key+0x34>
+  c0:	25 e0       	ldi	r18, 0x05	; 5
+  c2:	30 e0       	ldi	r19, 0x00	; 0
+  c4:	3e c0       	rjmp	.+124    	; 0x142 <key+0xb0>
+		if((PINA & 0b00000010) == 0){return 6;key=0;}
+  c6:	c9 99       	sbic	0x19, 1	; 25
+  c8:	03 c0       	rjmp	.+6      	; 0xd0 <key+0x3e>
+  ca:	26 e0       	ldi	r18, 0x06	; 6
+  cc:	30 e0       	ldi	r19, 0x00	; 0
+  ce:	39 c0       	rjmp	.+114    	; 0x142 <key+0xb0>
+		if((PINA & 0b00000100) == 0){return 7;key=0;}
+  d0:	ca 99       	sbic	0x19, 2	; 25
+  d2:	03 c0       	rjmp	.+6      	; 0xda <key+0x48>
+  d4:	27 e0       	ldi	r18, 0x07	; 7
+  d6:	30 e0       	ldi	r19, 0x00	; 0
+  d8:	34 c0       	rjmp	.+104    	; 0x142 <key+0xb0>
+		if((PINA & 0b00001000) == 0){return 8;key=0;}
+  da:	cb 99       	sbic	0x19, 3	; 25
+  dc:	03 c0       	rjmp	.+6      	; 0xe4 <key+0x52>
+  de:	28 e0       	ldi	r18, 0x08	; 8
+  e0:	30 e0       	ldi	r19, 0x00	; 0
+  e2:	2f c0       	rjmp	.+94     	; 0x142 <key+0xb0>
+
+		PORTD=0b10111111;
+  e4:	92 bb       	out	0x12, r25	; 18
+		if((PINA & 0b00000001) == 0){return 9;key=0;}
+  e6:	c8 99       	sbic	0x19, 0	; 25
+  e8:	03 c0       	rjmp	.+6      	; 0xf0 <key+0x5e>
+  ea:	29 e0       	ldi	r18, 0x09	; 9
+  ec:	30 e0       	ldi	r19, 0x00	; 0
+  ee:	29 c0       	rjmp	.+82     	; 0x142 <key+0xb0>
+		if((PINA & 0b00000010) == 0){return 10;key=0;}
+  f0:	c9 99       	sbic	0x19, 1	; 25
+  f2:	03 c0       	rjmp	.+6      	; 0xfa <key+0x68>
+  f4:	2a e0       	ldi	r18, 0x0A	; 10
+  f6:	30 e0       	ldi	r19, 0x00	; 0
+  f8:	24 c0       	rjmp	.+72     	; 0x142 <key+0xb0>
+		if((PINA & 0b00000100) == 0){return 11;key=0;}
+  fa:	ca 99       	sbic	0x19, 2	; 25
+  fc:	03 c0       	rjmp	.+6      	; 0x104 <key+0x72>
+  fe:	2b e0       	ldi	r18, 0x0B	; 11
+ 100:	30 e0       	ldi	r19, 0x00	; 0
+ 102:	1f c0       	rjmp	.+62     	; 0x142 <key+0xb0>
+		if((PINA & 0b00001000) == 0){return 12;key=0;}
+ 104:	cb 99       	sbic	0x19, 3	; 25
+ 106:	03 c0       	rjmp	.+6      	; 0x10e <key+0x7c>
+ 108:	2c e0       	ldi	r18, 0x0C	; 12
+ 10a:	30 e0       	ldi	r19, 0x00	; 0
+ 10c:	1a c0       	rjmp	.+52     	; 0x142 <key+0xb0>
+
+		PORTD=0b01111111;
+ 10e:	82 bb       	out	0x12, r24	; 18
+		if((PINA & 0b00000001) == 0){return 13;key=0;}
+ 110:	c8 99       	sbic	0x19, 0	; 25
+ 112:	03 c0       	rjmp	.+6      	; 0x11a <key+0x88>
+ 114:	2d e0       	ldi	r18, 0x0D	; 13
+ 116:	30 e0       	ldi	r19, 0x00	; 0
+ 118:	14 c0       	rjmp	.+40     	; 0x142 <key+0xb0>
+		if((PINA & 0b00000010) == 0){return 14;key=0;}
+ 11a:	c9 99       	sbic	0x19, 1	; 25
+ 11c:	03 c0       	rjmp	.+6      	; 0x124 <key+0x92>
+ 11e:	2e e0       	ldi	r18, 0x0E	; 14
+ 120:	30 e0       	ldi	r19, 0x00	; 0
+ 122:	0f c0       	rjmp	.+30     	; 0x142 <key+0xb0>
+		if((PINA & 0b00000100) == 0){return 15;key=0;}
+ 124:	ca 99       	sbic	0x19, 2	; 25
+ 126:	03 c0       	rjmp	.+6      	; 0x12e <key+0x9c>
+ 128:	2f e0       	ldi	r18, 0x0F	; 15
+ 12a:	30 e0       	ldi	r19, 0x00	; 0
+ 12c:	0a c0       	rjmp	.+20     	; 0x142 <key+0xb0>
+		if((PINA & 0b00001000) == 0){return 16;key=0;}
+ 12e:	cb 99       	sbic	0x19, 3	; 25
+ 130:	03 c0       	rjmp	.+6      	; 0x138 <key+0xa6>
+ 132:	20 e1       	ldi	r18, 0x10	; 16
+ 134:	30 e0       	ldi	r19, 0x00	; 0
+ 136:	05 c0       	rjmp	.+10     	; 0x142 <key+0xb0>
+}
+
+int key()
+{	int key=1;
+	while(key)
+	{	PORTD=0b11101111;
+ 138:	32 bb       	out	0x12, r19	; 18
+		if((PINA & 0b00000001) == 0){return 1;key=0;}
+ 13a:	c8 99       	sbic	0x19, 0	; 25
+ 13c:	af cf       	rjmp	.-162    	; 0x9c <key+0xa>
+ 13e:	21 e0       	ldi	r18, 0x01	; 1
+ 140:	30 e0       	ldi	r19, 0x00	; 0
+		if((PINA & 0b00000010) == 0){return 14;key=0;}
+		if((PINA & 0b00000100) == 0){return 15;key=0;}
+		if((PINA & 0b00001000) == 0){return 16;key=0;}
+	key=1;
+	}
+}
+ 142:	c9 01       	movw	r24, r18
+ 144:	08 95       	ret
+
+00000146 <main>:
+#include <util/delay.h>
+
+int key(void);
+
+int main(void)
+{	DDRA=0b00000000;
+ 146:	ef 92       	push	r14
+ 148:	ff 92       	push	r15
+ 14a:	0f 93       	push	r16
+ 14c:	1f 93       	push	r17
+ 14e:	1a ba       	out	0x1a, r1	; 26
+  	DDRB=0b11111111;
+ 150:	8f ef       	ldi	r24, 0xFF	; 255
+ 152:	87 bb       	out	0x17, r24	; 23
+  	DDRD=0b11111111;
+ 154:	81 bb       	out	0x11, r24	; 17
+  	int y=0;
+	PORTA=0x0F;                                                                                                                                                                                                                       		
+ 156:	8f e0       	ldi	r24, 0x0F	; 15
+ 158:	8b bb       	out	0x1b, r24	; 27
+  	while(1)
+  	{	y=key();
+  		if(y==1){PORTB=0X00;}
+		if(y==2){PORTB=0b00001010;}
+ 15a:	9a e0       	ldi	r25, 0x0A	; 10
+ 15c:	e9 2e       	mov	r14, r25
+		if(y==3){PORTB=0X00;}
+		if(y==4){PORTB=0X00;}
+ 		if(y==5){PORTB=0X00;}
+		if(y==6){
+		PORTB=0x00;}
+		if(y==7){		PORTB=0b00001000;}
+ 15e:	88 e0       	ldi	r24, 0x08	; 8
+ 160:	f8 2e       	mov	r15, r24
+		if(y==8){PORTB=0X00;}
+ 		if(y==9){		PORTB=0b00000010;}
+ 162:	02 e0       	ldi	r16, 0x02	; 2
+		if(y==10){		PORTB=0b00000101;}
+ 164:	15 e0       	ldi	r17, 0x05	; 5
+  	DDRB=0b11111111;
+  	DDRD=0b11111111;
+  	int y=0;
+	PORTA=0x0F;                                                                                                                                                                                                                       		
+  	while(1)
+  	{	y=key();
+ 166:	0e 94 49 00 	call	0x92	; 0x92 <key>
+  		if(y==1){PORTB=0X00;}
+ 16a:	81 30       	cpi	r24, 0x01	; 1
+ 16c:	91 05       	cpc	r25, r1
+ 16e:	11 f4       	brne	.+4      	; 0x174 <main+0x2e>
+ 170:	18 ba       	out	0x18, r1	; 24
+ 172:	0f c0       	rjmp	.+30     	; 0x192 <main+0x4c>
+		if(y==2){PORTB=0b00001010;}
+ 174:	82 30       	cpi	r24, 0x02	; 2
+ 176:	91 05       	cpc	r25, r1
+ 178:	11 f4       	brne	.+4      	; 0x17e <main+0x38>
+ 17a:	e8 ba       	out	0x18, r14	; 24
+ 17c:	0f c0       	rjmp	.+30     	; 0x19c <main+0x56>
+		if(y==3){PORTB=0X00;}
+ 17e:	83 30       	cpi	r24, 0x03	; 3
+ 180:	91 05       	cpc	r25, r1
+ 182:	11 f4       	brne	.+4      	; 0x188 <main+0x42>
+ 184:	18 ba       	out	0x18, r1	; 24
+ 186:	0f c0       	rjmp	.+30     	; 0x1a6 <main+0x60>
+		if(y==4){PORTB=0X00;}
+ 188:	84 30       	cpi	r24, 0x04	; 4
+ 18a:	91 05       	cpc	r25, r1
+ 18c:	11 f4       	brne	.+4      	; 0x192 <main+0x4c>
+ 18e:	18 ba       	out	0x18, r1	; 24
+ 190:	0f c0       	rjmp	.+30     	; 0x1b0 <main+0x6a>
+ 		if(y==5){PORTB=0X00;}
+ 192:	85 30       	cpi	r24, 0x05	; 5
+ 194:	91 05       	cpc	r25, r1
+ 196:	11 f4       	brne	.+4      	; 0x19c <main+0x56>
+ 198:	18 ba       	out	0x18, r1	; 24
+ 19a:	0f c0       	rjmp	.+30     	; 0x1ba <main+0x74>
+		if(y==6){
+ 19c:	86 30       	cpi	r24, 0x06	; 6
+ 19e:	91 05       	cpc	r25, r1
+ 1a0:	11 f4       	brne	.+4      	; 0x1a6 <main+0x60>
+		PORTB=0x00;}
+ 1a2:	18 ba       	out	0x18, r1	; 24
+ 1a4:	0f c0       	rjmp	.+30     	; 0x1c4 <main+0x7e>
+		if(y==7){		PORTB=0b00001000;}
+ 1a6:	87 30       	cpi	r24, 0x07	; 7
+ 1a8:	91 05       	cpc	r25, r1
+ 1aa:	11 f4       	brne	.+4      	; 0x1b0 <main+0x6a>
+ 1ac:	f8 ba       	out	0x18, r15	; 24
+ 1ae:	0f c0       	rjmp	.+30     	; 0x1ce <main+0x88>
+		if(y==8){PORTB=0X00;}
+ 1b0:	88 30       	cpi	r24, 0x08	; 8
+ 1b2:	91 05       	cpc	r25, r1
+ 1b4:	11 f4       	brne	.+4      	; 0x1ba <main+0x74>
+ 1b6:	18 ba       	out	0x18, r1	; 24
+ 1b8:	0f c0       	rjmp	.+30     	; 0x1d8 <main+0x92>
+ 		if(y==9){		PORTB=0b00000010;}
+ 1ba:	89 30       	cpi	r24, 0x09	; 9
+ 1bc:	91 05       	cpc	r25, r1
+ 1be:	11 f4       	brne	.+4      	; 0x1c4 <main+0x7e>
+ 1c0:	08 bb       	out	0x18, r16	; 24
+ 1c2:	0f c0       	rjmp	.+30     	; 0x1e2 <main+0x9c>
+		if(y==10){		PORTB=0b00000101;}
+ 1c4:	8a 30       	cpi	r24, 0x0A	; 10
+ 1c6:	91 05       	cpc	r25, r1
+ 1c8:	11 f4       	brne	.+4      	; 0x1ce <main+0x88>
+ 1ca:	18 bb       	out	0x18, r17	; 24
+ 1cc:	0d c0       	rjmp	.+26     	; 0x1e8 <main+0xa2>
+		if(y==11){PORTB=0X00;}
+ 1ce:	8b 30       	cpi	r24, 0x0B	; 11
+ 1d0:	91 05       	cpc	r25, r1
+ 1d2:	11 f4       	brne	.+4      	; 0x1d8 <main+0x92>
+ 1d4:	18 ba       	out	0x18, r1	; 24
+ 1d6:	0b c0       	rjmp	.+22     	; 0x1ee <main+0xa8>
+		if(y==12){PORTB=0X00;}
+ 1d8:	8c 30       	cpi	r24, 0x0C	; 12
+ 1da:	91 05       	cpc	r25, r1
+ 1dc:	11 f4       	brne	.+4      	; 0x1e2 <main+0x9c>
+ 1de:	18 ba       	out	0x18, r1	; 24
+ 1e0:	09 c0       	rjmp	.+18     	; 0x1f4 <main+0xae>
+ 		if(y==13){PORTB=0X00;}
+ 1e2:	8d 30       	cpi	r24, 0x0D	; 13
+ 1e4:	91 05       	cpc	r25, r1
+ 1e6:	49 f0       	breq	.+18     	; 0x1fa <main+0xb4>
+		if(y==14){PORTB=0X00;}
+ 1e8:	8e 30       	cpi	r24, 0x0E	; 14
+ 1ea:	91 05       	cpc	r25, r1
+ 1ec:	31 f0       	breq	.+12     	; 0x1fa <main+0xb4>
+		if(y==15){PORTB=0X00;}
+ 1ee:	8f 30       	cpi	r24, 0x0F	; 15
+ 1f0:	91 05       	cpc	r25, r1
+ 1f2:	19 f0       	breq	.+6      	; 0x1fa <main+0xb4>
+		if(y==16){PORTB=0X00;}
+ 1f4:	40 97       	sbiw	r24, 0x10	; 16
+ 1f6:	09 f0       	breq	.+2      	; 0x1fa <main+0xb4>
+ 1f8:	b6 cf       	rjmp	.-148    	; 0x166 <main+0x20>
+ 1fa:	18 ba       	out	0x18, r1	; 24
+ 1fc:	b4 cf       	rjmp	.-152    	; 0x166 <main+0x20>
+
+000001fe <_exit>:
+ 1fe:	f8 94       	cli
+
+00000200 <__stop_program>:
+ 200:	ff cf       	rjmp	.-2      	; 0x200 <__stop_program>
